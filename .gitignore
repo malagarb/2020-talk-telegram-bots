@@ -24,3 +24,6 @@
 # Ignore master key for decrypting credentials and more.
 /telegram-bot-with-rails/config/master.key
 /*_
+/rails-bot/.git_/*
+/deploy/local/nginx/cert_priv.key
+/deploy/local/nginx/cert_public.pem

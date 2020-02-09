@@ -1,0 +1,16 @@
+FROM ruby:2.6.5
+LABEL MAINTAINER @malagarb
+RUN groupadd -g 1000 dockeruser
+RUN useradd -u 1000 -g 1000 dockeruser
+RUN \
+  apt-get update && apt-get install -y \
+  build-essential \
+  nodejs
+RUN mkdir -p /app
+WORKDIR /app
+COPY ./rails-bot/Gemfile ./rails-bot/Gemfile.lock ./
+RUN gem install bundler && bundle install --jobs 20 --retry 5
+COPY rails-bot ./
+EXPOSE 3000
+USER dockeruser
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]
