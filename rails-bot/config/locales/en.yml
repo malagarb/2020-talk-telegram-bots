@@ -30,4 +30,5 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  default_message: "hello I'm malagarb_bot, ¿how can I help you?"
+  hello: "hello"
