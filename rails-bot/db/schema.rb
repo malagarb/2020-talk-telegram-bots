@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_09_211857) do
+ActiveRecord::Schema.define(version: 2020_02_15_070503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "webhooks", force: :cascade do |t|
+  create_table "request_interactions", force: :cascade do |t|
     t.integer "chat_id"
     t.string "telegram_date"
     t.string "from_user"
@@ -25,11 +25,10 @@ ActiveRecord::Schema.define(version: 2020_02_09_211857) do
     t.json "payload_received"
     t.json "payload_received_reply"
     t.json "payload_sent"
+    t.string "payload_sent_method"
     t.json "payload_sent_reply"
-    t.json "payload_rswebapp"
-    t.json "payload_rswebapp_reply"
     t.json "payload_result"
-    t.boolean "process_status"
+    t.integer "process_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
