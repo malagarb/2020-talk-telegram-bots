@@ -1,0 +1,2 @@
+class RequestInteraction < ApplicationRecord
+end
