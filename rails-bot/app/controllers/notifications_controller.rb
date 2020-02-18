@@ -79,7 +79,7 @@ class NotificationsController < ApplicationController
       decissions_en = {
         # /I18n.t 'hello'/ => {method: 'sendMessage', text: I18n.t("default_message") },
         /hi/ => {method: 'sendMessage', text: "hello"},
-        /next meetup/ => {method: 'sendMessage', text: "next meetup will be "},
+        /next meetup/ => {method: 'sendMessage', text: "next meetup will be #{MeetupDateGenerator.next_meetup(Time.now.year, Time.now.month, Time.now.day)}"},
         /\/start/     => {method: 'sendMessage', text: "Hello I'm malagarb_bot , ¿how can I help you?", reply_markup: {"remove_keyboard":true,"selective":false}},
         /\/stop/      => {method: 'sendMessage', text: "I hope I have been useful, thank you.", reply_markup: {"remove_keyboard":true,"selective":false}}
       }
@@ -87,10 +87,7 @@ class NotificationsController < ApplicationController
           output = v if k.match? input[:message][:text].downcase
       end
     end
-    next_meetup = MeetupDateGenerator.next_meetup(Time.now.year, Time.now.month, Time.now.day)
-    # output = { text: "Hello I'm malagarb_bot , how can I help you?"}
     output[:chat_id] = input[:message][:chat][:id]
-    output[:text] << next_meetup
     return output, "sendMessage"
   end
 
